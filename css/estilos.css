@@ -1,3 +1,34 @@
+/*----GRID----*/
+@media (min-width: 992px) {
+  .basegrid {
+    display: grid;
+    grid-template-areas: "header" "main" "footer";
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto;
+  }
+  header {
+    grid-area: "header";
+  }
+  main {
+    grid-area: "main";
+  }
+  footer {
+    grid-area: "footer";
+  }
+  .main--grid {
+    display: grid;
+    grid-template-areas: "asideL content";
+    grid-template-columns: 24% 74%;
+    grid-template-rows: auto;
+    column-gap: 2%;
+  }
+  .asideL {
+    grid-area: asideL;
+  }
+  .content {
+    grid-area: content;
+  }
+}
 /*--------GENERAL--------*/
 body {
     margin: 0%;
@@ -11,7 +42,6 @@ body {
     color: rgb(190, 255, 136);
   }
   body header {
-    top: 0px;
     margin: 0px;
   }
   body header .navbar {
@@ -21,14 +51,6 @@ body {
     background-color: rgb(156, 39, 176);
     width: 100%;
     height: auto;
-  }
-  body header .navbar .navbar-profile {
-    border-radius: 50%;
-    border: 0.1rem solid rgb(20, 20, 20);
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin: 0 0 0 32%;
   }
   body header .navbar ul {
     margin: 0% 6rem;
@@ -57,9 +79,34 @@ body {
     align-items: center;
   }
   .titulo{
-    inline-size: 2.5rem;
-    margin:0.3rem;
+    display: flex;
+    justify-content:center;
+    margin:0%;
+    position: absolute;
+    right: 35%;
+    left:35%;
+    text-shadow: 4px 4px 8px #020202;
+    opacity: 0;
+    transition: all 0.8s ease;
   }
+  .cardJuego:hover .titulo{
+    opacity: 1;
+    cursor:none;
+  }
+ 
+  .cardJuego:hover img{
+    opacity: 0.5;
+    -webkit-filter: grayscale(50%);
+  }
+  .cardJuego{
+    width:25%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 3%;
+  }
+
   .cover{
     border-radius: 2rem;
     padding: 0.5rem;
@@ -71,51 +118,65 @@ body {
     flex-shrink: 4;
     overflow: clip;
   }
-.cardJuego{
-  width:20%;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-}
-  body footer {
-    background-color: rgb(0, 0, 0);
-    margin-bottom: 0;
-    display: block;
-    width: 100%;
-    margin-top: auto;
 
+  .buttonAdd{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+    border-radius: 2rem;
+    border: 0;
+    background-color: rgb(118, 255, 3);
+    color: #000;
+    resize: none;
+    text-shadow: 2px 2px 6px #222222;
+    font-weight: bold;
+    position: absolute;
+    bottom: -1.5rem;
   }
-  body footer p {
-    color: rgb(118, 255, 3);
-    margin-left: 2rem;
-    margin-right: 2rem;
+  .buttonAdd:focus{
+    border: 0.1rem solid rgb(118, 255, 3);
   }
-  body footer ul {
-    display: flex;
-    justify-content: flex-end;
+  .buttonAdd:hover{
+    box-shadow: 0 0 0.5rem rgb(118, 255, 3);
   }
-  body footer ul li {
-    list-style: none;
+  .buttonAdd:active{
+    color: #000;
+    background-color: #32CB00;
+    box-shadow: 0 0 0.5rem #32CB00;
   }
-  body footer ul li a {
-    text-decoration: none;
+
+  .buttonRemove{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+    border-radius: 2rem;
+    border: 0;
+    background-color: rgb(255, 3, 24);
+    color: #000;
+    resize: none;
+    text-shadow: 2px 2px 6px #222222;
+    font-weight: bold;
+    position: absolute;
+    bottom: -1.5rem;
   }
-  body footer .footer-text {
-    display: flex;
-    justify-content: space-between;
+  .buttonRemove:focus{
+    border: 0.1rem solid rgb(255, 3, 24);
   }
-  
-  a:active {
-    color: #32CB00;
-    text-shadow: 0 0 0.5rem #32CB00;
+  .buttonRemove:hover{
+    box-shadow: 0 0 0.5rem rgb(255, 3, 24);
   }
-  
-  a:hover {
-    color: #32CB00;
-  }
-  
-  a:visited {
-    color: #248f00;
+  .buttonRemove:active{
+    color: #000;
+    background-color: #cb0011;
+    box-shadow: 0 0 0.5rem #cb0011;
   }
 
   #buscador {
@@ -134,38 +195,51 @@ body {
     background-position: 3% 50%;
     }
     
-    #filtros li{
-        list-style: none;
-    }
-    .buttonCard{
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 2rem;
-      height: 2rem;
-      padding: 0.8rem;
-      margin: 0.8rem 0;
-      box-sizing: border-box;
-      border-radius: 2rem;
-      border: 0;
-      background-color: rgb(118, 255, 3);
-      color: #000;
-      resize: none;
-      text-shadow: 2px 2px 6px #222222;
-      font-weight: bold;
-    }
-    .buttonCard:focus{
-      border: 0.1rem solid rgb(118, 255, 3);
-    }
-    .buttonCard:hover{
-      box-shadow: 0 0 0.5rem rgb(118, 255, 3);
-    }
-    .buttonCard:active{
-      color: #000;
-      background-color: #32CB00;
-      box-shadow: 0 0 0.5rem #32CB00;
-    }
+  #filtros li{
+    list-style: none;
+  }
 
-   .ocultar{
-    display:none
-   }
+
+  body footer {
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 0;
+    width: 100%;
+    margin-top: auto;
+
+  }
+  body footer p {
+    color: rgb(118, 255, 3);
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  body footer ul {
+    display: flex;
+    justify-content: end;
+  }
+  body footer ul li {
+    list-style: none;
+  }
+  body footer ul li a {
+    text-decoration: none;
+  }
+  body footer ul li img {
+   height: 3rem;
+   width: 3rem;
+  }
+  
+  a:active {
+    color: #32CB00;
+    text-shadow: 0 0 0.5rem #32CB00;
+  }
+  
+  a:hover {
+    color: #32CB00;
+  }
+  
+  a:visited {
+    color: #248f00;
+  }
+
+.ocultar{
+ display:none
+ }

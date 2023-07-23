@@ -36,21 +36,26 @@ function principal() {
 
     ]
 
+    let seccionColeccion = document.getElementById("coleccion")
     let seccion = document.getElementById("juegos")
     crearCards(videojuegos, seccion)
     filtrado(videojuegos)
 
+    if(seccionColeccion){
+        mostrarColeccion(coleccionJSON,seccionColeccion)
+    }
     let buscador = document.getElementById("buscador")
     buscador.addEventListener("input", () => { filtro(videojuegos) })
 }
 
-principal()
-
 //sacar de global cuando funcione
 let coleccion = []
+
 let coleccionJSON = JSON.parse(localStorage.getItem("coleccion"))
 let mostrarListaColeccion = document.getElementById("coleccion")
-mostrarListaColeccion.addEventListener("click", () => mostrarColeccion(coleccionJSON))
+
+
+principal()
 
 //agrega contenido html
 function crearCards(array, contenedor) {
@@ -61,44 +66,70 @@ function crearCards(array, contenedor) {
         juego.classList.add("cardJuego")
         juego.innerHTML = `
             <img class="cover" src=../images/portadas/${array[i].ruta_img}>
-            <h6 class="titulo">${array[i].nombre}</h6>
-            <button class=buttonCard id="${array[i].id}">+</button>
+            <h5 class="titulo">${array[i].nombre}</h5>
+            <button class=buttonAdd id="${array[i].id}"><h1>+</h1></button>
             `
         let botonAgregarAColeccion = document.getElementById(array[i].id)
         botonAgregarAColeccion.addEventListener("click", () => agregarAColeccion(array[i]))
     }
 }
 
-function agregarAColeccion(juegoPendiente) {
-    let juegoEncontrado = coleccion.find(juego => juegoPendiente.id === juego.id)
-    if (juegoEncontrado == undefined) {
-        coleccion.push({
-            id: juegoPendiente.id,
-            nombre: juegoPendiente.nombre,
-            ruta_img: juegoPendiente.ruta_img
-        })
+function eliminarDeColeccion(juegoSeleccionado) {
+    let juegoEncontrado = coleccionJSON.indexOf(juegoSeleccionado)
+    if (juegoEncontrado > -1) {
+        coleccionJSON.splice(juegoEncontrado, 1)
     }
     else {
-        alert("Este juego ya esta en tu colección")
+        alert("Este juego no esta en tu colección")
     }
-
-    localStorage.setItem("coleccion", JSON.stringify(coleccion))
-    console.log(coleccion)
+    localStorage.setItem("coleccion", JSON.stringify(coleccionJSON))
+    mostrarColeccion(coleccionJSON,seccionColeccion)
 }
 
-function mostrarColeccion(array) {
-    let seccionColeccion = document.getElementById("coleccion")
+function agregarAColeccion(juegoPendiente) {
+    if (coleccionJSON!=null && coleccionJSON.length> 0 ) {
+        let juegoEncontrado = coleccionJSON.find(juego => juegoPendiente.id === juego.id)
+        if (juegoEncontrado === undefined) {
+            coleccionJSON.push({
+                id: juegoPendiente.id,
+                nombre: juegoPendiente.nombre,
+                ruta_img: juegoPendiente.ruta_img
+            })
+            localStorage.setItem("coleccion", JSON.stringify(coleccionJSON))
+        }
+        else {
+            alert("Este juego ya esta en tu colección")
+        }
+    }
+    else {
+        let juegoEncontrado = coleccion.find(juego => juegoPendiente.id === juego.id)
+        if (juegoEncontrado === undefined) {
+            coleccion.push({
+                id: juegoPendiente.id,
+                nombre: juegoPendiente.nombre,
+                ruta_img: juegoPendiente.ruta_img
+            })
+            localStorage.setItem("coleccion", JSON.stringify(coleccion))
+        }
+        else {
+            alert("Este juego ya esta en tu colección")
+        }
+    }
+}
 
-    seccionColeccion.innerHTML = " "
+function mostrarColeccion(array,seccion) {
+    seccion.innerHTML = " "
     for (let i = 0; i < array.length; i++) {
         let juego = document.createElement("div")
-        seccionColeccion.appendChild(juego)
+        seccion.appendChild(juego)
         juego.classList.add("cardJuego")
         juego.innerHTML = `
             <img class="cover" src=../images/portadas/${array[i].ruta_img}>
-            <h6 class="titulo">${array[i].nombre}</h6>
-            <button id="${array[i].id}">-</button>
+            <h5 class="titulo">${array[i].nombre}</h5>
+            <button class="buttonRemove" id="${array[i].id}"><h1>-</h1></button>
             `
+        let botonEliminarDeColeccion = document.getElementById(array[i].id)
+        botonEliminarDeColeccion.addEventListener("click", () => eliminarDeColeccion(array[i]))
     }
 
 }
