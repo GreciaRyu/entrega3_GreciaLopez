@@ -33,31 +33,31 @@ function principal() {
             9.0, ["Windows", "Nintendo Switch", "PlaStation 4", "Xbox One", "Playstation 5"], "hades_cover_art.jpg", "09"),
         new Videojuego("Super Mario 64", "Accion", "Nintendo", "1996",
             8.5, ["Nintendo 64", "Wii", "Wii U", "Nintendo Switch"], "supermario_64.jpg", "10")
-
     ]
 
-    let seccionColeccion = document.getElementById("coleccion")
-    let seccion = document.getElementById("juegos")
-    crearCards(videojuegos, seccion)
-    filtrado(videojuegos)
+    let seccionJuegos = document.getElementById("juegos")
+    let buscador = document.getElementById("buscador")
+    crearCards(videojuegos, seccionJuegos)
+    filtrado(videojuegos,seccionJuegos)
 
     if(seccionColeccion){
         mostrarColeccion(coleccionJSON,seccionColeccion)
     }
-    let buscador = document.getElementById("buscador")
-    buscador.addEventListener("input", () => { filtro(videojuegos) })
+    if(seccionJuegos){
+        buscador.addEventListener("input", () => { filtro(videojuegos,seccionJuegos)})
+    }
+   
 }
 
-//sacar de global cuando funcione
-let coleccion = []
 
+let seccionColeccion = document.getElementById("coleccion")
+let coleccion = []
 let coleccionJSON = JSON.parse(localStorage.getItem("coleccion"))
-let mostrarListaColeccion = document.getElementById("coleccion")
 
 
 principal()
 
-//agrega contenido html
+//agrega contenido html a index
 function crearCards(array, contenedor) {
     contenedor.innerHTML = " "
     for (let i = 0; i < array.length; i++) {
@@ -78,9 +78,24 @@ function eliminarDeColeccion(juegoSeleccionado) {
     let juegoEncontrado = coleccionJSON.indexOf(juegoSeleccionado)
     if (juegoEncontrado > -1) {
         coleccionJSON.splice(juegoEncontrado, 1)
+        Toastify({
+            text: "Has eliminado un juego de tu colección",
+            duration: 4500,
+            newWindow: true,
+            gravity: "top",
+            position: 'right',
+            className: "advertencia",
+          }).showToast();
     }
     else {
-        alert("Este juego no esta en tu colección")
+        Toastify({
+            text: "Este juego no esta en tu colección",
+            duration: 4500,
+            newWindow: true,
+            gravity: "top",
+            position: 'right',
+            className: "error",
+          }).showToast();
     }
     localStorage.setItem("coleccion", JSON.stringify(coleccionJSON))
     mostrarColeccion(coleccionJSON,seccionColeccion)
@@ -96,9 +111,24 @@ function agregarAColeccion(juegoPendiente) {
                 ruta_img: juegoPendiente.ruta_img
             })
             localStorage.setItem("coleccion", JSON.stringify(coleccionJSON))
+            Toastify({
+                text: "Se ha agregado un juego a tu colección",
+                duration: 4500,
+                newWindow: true,
+                gravity: "top",
+                position: 'right',
+                className: "success",
+              }).showToast();
         }
         else {
-            alert("Este juego ya esta en tu colección")
+            Toastify({
+                text: "Este juego ya esta en tu colección",
+                duration: 4500,
+                newWindow: true,
+                gravity: "top",
+                position: 'right',
+                className: "error",
+              }).showToast();
         }
     }
     else {
@@ -110,13 +140,29 @@ function agregarAColeccion(juegoPendiente) {
                 ruta_img: juegoPendiente.ruta_img
             })
             localStorage.setItem("coleccion", JSON.stringify(coleccion))
+            Toastify({
+                text: "Se ha agregado un juego a tu colección",
+                duration: 4500,
+                newWindow: true,
+                gravity: "top",
+                position: 'right',
+                className: "success",
+              }).showToast();
         }
         else {
-            alert("Este juego ya esta en tu colección")
+            Toastify({
+                text: "Este juego ya esta en tu colección",
+                duration: 4500,
+                newWindow: true,
+                gravity: "top",
+                position: 'right',
+                className: "error",
+              }).showToast();
         }
     }
 }
 
+//agrega contenido html a coleccion
 function mostrarColeccion(array,seccion) {
     seccion.innerHTML = " "
     for (let i = 0; i < array.length; i++) {
@@ -134,14 +180,13 @@ function mostrarColeccion(array,seccion) {
 
 }
 //Crea las Cards de los filtros
-function filtro(array) {
-    let seccionFiltrada = document.getElementById("juegos")
+function filtro(array,seccion) {
     let arrayFiltrado = array.filter(videojuego => videojuego.nombre.toLowerCase().includes(buscador.value))
-    crearCards(arrayFiltrado, seccionFiltrada)
+        crearCards(arrayFiltrado, seccion)
 }
 
 //agrega el contenido html de los filtros
-function filtrado(array) {
+function filtrado(array,seccion) {
     let filtros = []
     array.forEach(videojuego => {
         if (!filtros.includes(videojuego.genero)) {
@@ -170,10 +215,10 @@ function filtrado(array) {
     for (const elemento of filtroPropiedad) {
         elemento.addEventListener("click", filtrarCategoria)
     }
-    let seccionFiltrada = document.getElementById("juegos")
+    
     function filtrarCategoria(e) {
         let arrayFiltrado = array.filter(videojuego => videojuego.genero.toLowerCase().includes(e.target.id))
-        crearCards(arrayFiltrado, seccionFiltrada)
+        crearCards(arrayFiltrado, seccion)
     }
 }
 
