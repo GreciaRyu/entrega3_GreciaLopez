@@ -1,0 +1,112 @@
+[
+        {
+        "nombre":"Persona 5 Royal",
+        "genero":"RPG",
+        "desarrollador":"Altus Co",
+        "fecha_de_publicacion":"21-10-2022",
+        "puntuacion":8.8,
+        "plataformas":["Xbox One", "Nintendo Switch", "Windows", "PlayStation 5"],
+        "ruta_img":"persona_5.jpeg",
+        "id":"01"
+        },
+
+        {
+        "nombre":"The Legend of Zelda: Tears of the Kingdom",
+        "genero":"Accion",
+        "desarrollador":"Nintendo",
+        "fecha_de_publicacion":"12-05-2023",
+        "puntuacion": 9.5,
+        "plataformas": ["Nintendo Switch"],
+        "ruta_img":"the-Legend-of-Zelda-Tears-of-the-Kingdom.jpg",
+        "id":"02"
+        },
+
+        {
+        "nombre":"Portal",
+        "genero":"Puzzle",
+        "desarrollador":"Valve Co",
+        "fecha_de_publicacion":"10-10-2007",
+        "puntuacion":8.4,
+        "plataformas":["Linux", "Windows", "Android"],
+        "ruta_img":"portal.jpg",
+        "id":"03"
+        },
+
+        {
+        "nombre":"Mass Effect",
+        "genero":"Accion-RPG",
+        "desarrollador":"BioWare Corporation",
+        "fecha_de_publicacion":"20-11-2007",
+        "puntuacion":8.6,
+        "plataformas":["Windows", "Xbox 360", "Xbox One"],
+        "ruta_img":"mass_effect.jpg",
+        "id":"04"
+        },
+
+        {
+        "nombre":"Circus Charlie",
+        "genero":"Accion",
+        "desarrollador":"Konami Industry Co. Ltd.",
+        "fecha_de_publicacion":"1984",
+        "puntuacion":6.5,
+        "plataformas":["MSX", "Arcade", "NES", "Commodore 64", "Wii U", "PlayStation 4", "Nintendo Switch"],
+        "ruta_img":"circus_charlie.jpg",
+        "id":"05"
+        },
+
+        {
+        "nombre":"Pac-Man World 3",
+        "genero":"Accion",
+        "desarrollador":"Blitz Games Ltd",
+        "fecha_de_publicacion":"15-11-2005",
+        "puntuacion":7.2,
+        "plataformas":["Windows", "PlayStation 2", "Xbox", "GameCube", "PSP", "Nintendo DS"],
+        "ruta_img":"pacman_world_3.jpg",
+        "id":"06"
+        },
+
+        {
+        "nombre":"Cult of the Lamb",
+        "genero":"Accion",
+        "desarrollador":"Massive Monster Ltd.",
+        "fecha_de_publicacion":"11-04-2022",
+        "puntuacion":8.2,
+        "plataformas":["Windows", "Macintosh", "PlayStation 4", "Xbox One", "Nintendo Switch", "PlayStation 5", "Xbox Series"],
+        "ruta_img":"cult_of_the_lamb.jpg",
+        "id":"07"
+        },
+        
+        {
+        "nombre":"Terraria",
+        "genero":"Accion",
+        "desarrollador":"Re-Logic",
+        "fecha_de_publicacion":"16-05-20112",
+        "puntuacion":7.9,
+        "plataformas":["Windows", "PlaStation 4", "Android", "Xbox 360", "iPhone", "PSVita", "Wii U"],
+        "ruta_img":"terraria.jpg",
+        "id":"08"
+        },
+        
+        {
+        "nombre":"Hades",
+        "genero":"RPG",
+        "desarrollador":"Supergiant Games, Inc.",
+        "fecha_de_publicacion":"06-12-2018",
+        "puntuacion":9.0,
+        "plataformas":["Windows", "Nintendo Switch", "PlaStation 4", "Xbox One", "Playstation 5"],
+        "ruta_img":"hades_cover_art.jpg",
+        "id":"09"
+        },
+
+        {
+        "nombre":"Super Mario 64",
+        "genero":"Accion",
+        "desarrollador":"Nintendo",
+        "fecha_de_publicacion":"1996",
+        "puntuacion":8.5,
+        "plataformas":["Nintendo 64", "Wii", "Wii U", "Nintendo Switch"],
+        "ruta_img":"supermario_64.jpg",
+        "id":"10"
+        }
+]
+    

@@ -1,3 +1,4 @@
+/*
 function Videojuego(nombre, genero, desarrollador, fecha_de_publicacion, puntuacion, plataformas, ruta_img, id) {
     this.nombre = nombre
     this.genero = genero
@@ -9,9 +10,7 @@ function Videojuego(nombre, genero, desarrollador, fecha_de_publicacion, puntuac
     this.id = id
 }
 
-function principal() {
-
-    let videojuegos = [
+    let games = [
         new Videojuego("Persona 5 Royal", "RPG", "Altus Co", "21-10-2022",
             8.8, ["Xbox One", "Nintendo Switch", "Windows", "PlayStation 5"], "persona_5.jpeg", "01"),
         new Videojuego("The Legend of Zelda: Tears of the Kingdom", "Accion", "Nintendo", "12-05-2023",
@@ -34,6 +33,16 @@ function principal() {
         new Videojuego("Super Mario 64", "Accion", "Nintendo", "1996",
             8.5, ["Nintendo 64", "Wii", "Wii U", "Nintendo Switch"], "supermario_64.jpg", "10")
     ]
+*/
+ let videojuegos=[]
+
+fetch("/videojuegos.json")
+    .then(response => response.json())
+    .then(data => {videojuegos=data})
+    .then(() => principal())
+    .catch(error => console.error(error));
+
+function principal() {
 
     let seccionJuegos = document.getElementById("juegos")
     let buscador = document.getElementById("buscador")
@@ -53,9 +62,6 @@ function principal() {
 let seccionColeccion = document.getElementById("coleccion")
 let coleccion = []
 let coleccionJSON = JSON.parse(localStorage.getItem("coleccion"))
-
-
-principal()
 
 //agrega contenido html a index
 function crearCards(array, contenedor) {
@@ -221,7 +227,3 @@ function filtrado(array,seccion) {
         crearCards(arrayFiltrado, seccion)
     }
 }
-
-
-
-
