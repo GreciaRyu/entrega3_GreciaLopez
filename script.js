@@ -1,40 +1,4 @@
-/*
-function Videojuego(nombre, genero, desarrollador, fecha_de_publicacion, puntuacion, plataformas, ruta_img, id) {
-    this.nombre = nombre
-    this.genero = genero
-    this.desarrollador = desarrollador
-    this.fecha_de_publicacion = fecha_de_publicacion
-    this.puntuacion = puntuacion
-    this.plataformas = plataformas
-    this.ruta_img = ruta_img
-    this.id = id
-}
-
-    let games = [
-        new Videojuego("Persona 5 Royal", "RPG", "Altus Co", "21-10-2022",
-            8.8, ["Xbox One", "Nintendo Switch", "Windows", "PlayStation 5"], "persona_5.jpeg", "01"),
-        new Videojuego("The Legend of Zelda: Tears of the Kingdom", "Accion", "Nintendo", "12-05-2023",
-            9.5, ["Nintendo Switch"], "the-Legend-of-Zelda-Tears-of-the-Kingdom.jpg", "02"),
-        new Videojuego("Portal", "Puzzle", "Valve Co", "10-10-2007",
-            8.4, ["Linux", "Windows", "Android"], "portal.jpg", "03"),
-        new Videojuego("Mass Effect", "Accion-RPG", "BioWare Corporation", "20-11-2007",
-            8.6, ["Windows", "Xbox 360", "Xbox One"], "mass_effect.jpg", "04"),
-        new Videojuego("Circus Charlie", "Accion", "Konami Industry Co. Ltd.", "1984",
-            6.5, ["MSX", "Arcade", "NES", "Commodore 64", "Wii U", "PlayStation 4", "Nintendo Switch"], "circus_charlie.jpg", "05"),
-        new Videojuego("Pac-Man World 3", "Accion", "Blitz Games Ltd", "15-11-2005",
-            7.2, ["Windows", "PlayStation 2", "Xbox", "GameCube", "PSP", "Nintendo DS"], "pacman_world_3.jpg", "06"),
-        new Videojuego("Cult of the Lamb", "Accion", "Massive Monster Ltd.", "11-04-2022",
-            8.2, ["Windows", "Macintosh", "PlayStation 4", "Xbox One", "Nintendo Switch", "PlayStation 5", "Xbox Series"],
-            "cult_of_the_lamb.jpg", "07"),
-        new Videojuego("Terraria", "Accion", "Re-Logic", "16-05-20112",
-            7.9, ["Windows", "PlaStation 4", "Android", "Xbox 360", "iPhone", "PSVita", "Wii U"], "terraria.jpg", "08"),
-        new Videojuego("Hades", "RPG", "Supergiant Games, Inc.", "06-12-2018",
-            9.0, ["Windows", "Nintendo Switch", "PlaStation 4", "Xbox One", "Playstation 5"], "hades_cover_art.jpg", "09"),
-        new Videojuego("Super Mario 64", "Accion", "Nintendo", "1996",
-            8.5, ["Nintendo 64", "Wii", "Wii U", "Nintendo Switch"], "supermario_64.jpg", "10")
-    ]
-*/
- let videojuegos=[]
+let videojuegos=[]
 
 fetch("/videojuegos.json")
     .then(response => response.json())
@@ -48,16 +12,17 @@ function principal() {
     let buscador = document.getElementById("buscador")
     crearCards(videojuegos, seccionJuegos)
     filtrado(videojuegos,seccionJuegos)
+    let generoToggle=document.getElementById("generoToggle")
+    generoToggle.addEventListener("click", () => document.getElementById("filtros").classList.toggle("ocultar"))
 
     if(seccionColeccion){
         mostrarColeccion(coleccionJSON,seccionColeccion)
+        buscador.addEventListener("input", () => { filtro(coleccionJSON,seccionColeccion)})
     }
     if(seccionJuegos){
         buscador.addEventListener("input", () => { filtro(videojuegos,seccionJuegos)})
     }
-   
 }
-
 
 let seccionColeccion = document.getElementById("coleccion")
 let coleccion = []
@@ -170,7 +135,7 @@ function agregarAColeccion(juegoPendiente) {
 
 //agrega contenido html a coleccion
 function mostrarColeccion(array,seccion) {
-    seccion.innerHTML = " "
+    seccion.innerHTML = ` `
     for (let i = 0; i < array.length; i++) {
         let juego = document.createElement("div")
         seccion.appendChild(juego)

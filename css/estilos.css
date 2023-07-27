@@ -14,6 +14,7 @@
   }
   footer {
     grid-area: "footer";
+    margin-bottom: 0;
   }
   .main--grid {
     display: grid;
@@ -27,6 +28,7 @@
   }
   .content {
     grid-area: content;
+
   }
 }
 /*--------GENERAL--------*/
@@ -69,7 +71,7 @@ body {
   }
 
   body main {
-    color: rgb(244, 217, 249);
+    color: rgb(255, 255, 255);
     margin:1.5rem;
   }
   body main section{
@@ -77,7 +79,9 @@ body {
     flex-wrap: wrap;
     justify-content:center;
     align-items: center;
+    margin-top: 2.5rem;
   }
+
   .titulo{
     display: flex;
     justify-content:center;
@@ -179,6 +183,14 @@ body {
     box-shadow: 0 0 0.5rem #cb0011;
   }
 
+  .tituloPagina{
+    text-shadow: 2px 2px 8px #000000;
+    display: flex;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+  }
+
   #buscador {
     width: 20rem;
     padding: 0.8rem;
@@ -194,11 +206,24 @@ body {
     border-color: #4441417a;
     background-position: 3% 50%;
     }
+  
+  #generoToggle{
+    cursor: pointer;
+    text-shadow: 2px 2px 8px #000000;
+    display: flex;
+    justify-content: center;
+    font-size: 2.5rem;
     
+  }  
   #filtros li{
     list-style: none;
+    background-image: url("../images/flecha-derecha.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 20px;
+    cursor: pointer;
+    padding: 0.5rem 2rem;
   }
-
 
   body footer {
     background-color: rgb(0, 0, 0);
@@ -227,12 +252,12 @@ body {
    width: 3rem;
   }
   
-  a:active {
+  a:active,#generoToggle:active {
     color: #32CB00;
     text-shadow: 0 0 0.5rem #32CB00;
   }
   
-  a:hover {
+  a:hover,#generoToggle:hover {
     color: #32CB00;
   }
   
